@@ -8,6 +8,7 @@ npm run init
 ### Run
 npm run build-run
 
+### Studing
 1. typescript
 2. sequelize
 3. mysql
