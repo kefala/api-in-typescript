@@ -1,0 +1,25 @@
+{
+  "name": "rich",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build-run": "tsc && node dist/index.js",
+    "br": "npm run build-run"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "4.15.4",
+    "mysql2": "1.4.2",
+    "sequelize": "4.8.4",
+    "typescript": "2.5.2"
+  },
+  "devDependencies": {
+    "@types/mocha": "2.2.43",
+    "@types/mysql": "0.0.34",
+    "@types/node": "8.0.28",
+    "@types/sequelize": "4.0.73",
+    "tslint": "5.7.0"
+  }
+}
