@@ -2,10 +2,10 @@
 
 bash .env
 
-Install and run
+### Install and run
 npm run init
 
-Run
+### Run
 npm run build-run
 
 1. typescript
