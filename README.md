@@ -1,9 +1,8 @@
 # api-in-typescript
 
-bash .env
-
 ### Install and run
-npm run init
+1. bash .env
+2. npm run init
 
 ### Run
 npm run build-run
