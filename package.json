@@ -6,7 +6,8 @@
   "scripts": {
     "build-run": "tsc && node ./dist/index.js",
     "br": "npm run build-run",
-    "init": "npm i && npm run br"
+    "init": "npm i && npm run br",
+    "lint": "tslint --fix -c ./tslint.json 'app/**/*.ts'"
   },
   "author": "",
   "license": "ISC",
