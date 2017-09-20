@@ -1,6 +1,6 @@
 # api-in-typescript
 
-bash .env
+source .env
 
 Install and run
 npm run init

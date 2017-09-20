@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build-run": "tsc && node dist/index.js",
+    "build-run": "tsc && node ./dist/index.js",
     "br": "npm run build-run",
     "init": "npm i && npm run br"
   },

@@ -1,24 +1,17 @@
 import * as express from 'express';
 import { DatabaseConnector } from './app/database/DatabaseConnector';
+import { router } from './app/config/router';
 
 class App {  
     public express;
     
     constructor () {
         this.express = express();
-        this.mountRoutes();
+        this.bootstrap();
     }
     
-    private mountRoutes (): void {
-        const router = express.Router();
+    private bootstrap (): void {
         let connector = new DatabaseConnector();
-        
-        router.get('/', (req, res) => {
-            res.json({
-                message: 'Hello World!'
-            });
-        });
-        
         this.express.use('/', router);
     }
 }
