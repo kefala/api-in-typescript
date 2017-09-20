@@ -1,13 +1,13 @@
 # api-in-typescript
 
-source .env
+### Install and run
+1. source .env
+2. npm run init
 
-Install and run
-npm run init
-
-Run
+### Run
 npm run build-run
 
+### Studing
 1. typescript
 2. sequelize
 3. mysql
