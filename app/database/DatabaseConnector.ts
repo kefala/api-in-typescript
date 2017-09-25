@@ -1,23 +1,17 @@
-import * as Sequelize from 'sequelize';
 import { enviroment as env } from '../config/environment';
+import * as mongoose from 'mongoose';
 
 export class DatabaseConnector {
-    public connectionIntance: Sequelize.Sequelize;
+
+    public connection: mongoose.Connection;
 
     constructor() {
-        this.connectionIntance = new Sequelize(env.database.uri);
-        this.authenticate();
+        this.connection = mongoose.createConnection(env.database.uri);
+        this.kwonSchemas();
     }
 
-    private authenticate(): void {
-        this.connectionIntance
-        .authenticate()
-        .then(() => {
-            console.log('Connection has been established successfully.');
-        })
-        .catch((err) => {
-            console.error('Unable to connect to the database:', err);
-        });
+    public kwonSchemas(): void {
+        this.connection.on('error', console.error.bind(console, 'connection error:'));
     }
 
 }

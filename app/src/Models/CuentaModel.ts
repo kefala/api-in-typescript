@@ -1,6 +1,19 @@
-import { ModelBase } from './ModelBase';
+import { CuentaModel } from '../Schemas/CuentaEntity';
 
-export class CuentaModel extends ModelBase {
-    public nombre: string;
-    public monto: number;
+export class Cuenta {
+    public model = CuentaModel;
+
+    public get() {
+        return new Promise((resolve, reject) => {
+            this.model.find({}, (err, data) => {
+                const response = data;
+
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(response);
+                }
+            });
+        });
+    }
 }

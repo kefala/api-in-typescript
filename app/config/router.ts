@@ -1,21 +1,10 @@
-import * as express from 'express';
-import { CuentaModel } from '../src/Models/CuentaModel';
-import { CuentaEntity } from '../src/Entities/CuentaEntity';
+import { Router } from 'express';
+import { CuentaBundle } from '../src/Bundles/CuentaBundle';
 
-// tslint:disable-next-line:variable-name
-const _router = express.Router();
+const cuentaBundle = new CuentaBundle();
 
-_router.get('/', (req, res) => {
-    const cuenta = new CuentaModel();
-    cuenta.monto = 0;
-    cuenta.nombre = 'Santander';
+let routerBundle: Router  = Router();
 
-    const daoCuenta = new CuentaEntity();
-    daoCuenta.save(cuenta);
+routerBundle = cuentaBundle.getBundle(routerBundle);
 
-    res.json({
-        message: 'Hello World!',
-    });
-});
-
-export const router = _router;
+export const router = routerBundle;
