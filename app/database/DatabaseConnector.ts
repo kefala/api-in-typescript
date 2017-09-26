@@ -1,17 +1,17 @@
 import { enviroment as env } from '../config/environment';
-import * as mongoose from 'mongoose';
+import { MongoClient, Db } from 'mongodb';
+import { enviroment } from '../config/environment';
 
 export class DatabaseConnector {
-
-    public connection: mongoose.Connection;
+    private path: string = enviroment.database.uri;
+    private connection: Promise<Db>;
 
     constructor() {
-        this.connection = mongoose.createConnection(env.database.uri);
-        this.kwonSchemas();
+        this.connection = MongoClient.connect(this.path);
     }
 
-    public kwonSchemas(): void {
-        this.connection.on('error', console.error.bind(console, 'connection error:'));
+    public getConnection(): Promise<Db> {
+        return this.connection;
     }
 
 }

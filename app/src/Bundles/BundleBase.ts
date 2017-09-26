@@ -30,6 +30,9 @@ export abstract class BundleBase {
         })
         .get((req: Request, res: Response, next: NextFunction) => {
             this.getAll(req, res, next);
+        })
+        .post((req: Request, res: Response, next: NextFunction) => {
+            this.post(req, res, next);
         });
 
         router
@@ -42,9 +45,6 @@ export abstract class BundleBase {
         })
         .put((req: Request, res: Response, next: NextFunction) => {
             this.put(req, res, next);
-        })
-        .post((req: Request, res: Response, next: NextFunction) => {
-            this.post(req, res, next);
         })
         .delete((req: Request, res: Response, next: NextFunction) => {
             this.delete(req, res, next);
