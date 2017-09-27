@@ -35,22 +35,32 @@ export abstract class EntityBase {
     }
 
     public get(id: string): Promise<ModelBase> {
-        console.log(id);
         return new Promise((resolve, reject) => {
-            this.getCollectionInstance().then((collection: Collection) => {
-                collection.findOne({_id: new ObjectId(id)}, (err, item: ModelBase) => {
-                    resolve(item);
-                    this.closeConnection();
+            if (!ObjectId.isValid(id)) {
+                reject();
+            } else {
+                this.getCollectionInstance().then((collection: Collection) => {
+                    collection.findOne({_id: new ObjectId(id)}, (err, item: ModelBase) => {
+                        resolve(item);
+                        this.closeConnection();
+                    });
                 });
-            });
+            }
         });
     }
 
-    public remove(value: ModelBase): void {
-        this.db.then((db: Db) => {
-            db.collection(this.getCollection()).save(value, (err, response) => {
-                console.log(response);
-            });
+    public remove(id: string): Promise<ModelBase> {
+        return new Promise((resolve, reject) => {
+            if (!ObjectId.isValid(id)) {
+                reject();
+            } else {
+                this.getCollectionInstance().then((collection: Collection) => {
+                    collection.deleteOne({_id: new ObjectId(id)}, (err, item: ModelBase) => {
+                        resolve(item);
+                        this.closeConnection();
+                    });
+                });
+            }
         });
     }
 
@@ -64,7 +74,7 @@ export abstract class EntityBase {
         });
     }
 
-    public getAll(value: ModelBase): Promise<ModelBase[]> {
+    public getAll(): Promise<ModelBase[]> {
         return new Promise((resolve, reject) => {
             this.getCollectionInstance().then((collection: Collection) => {
                 collection.find().toArray((err, data: ModelBase[]) => {
@@ -78,11 +88,18 @@ export abstract class EntityBase {
         });
     }
 
-    public edit(value: ModelBase): void {
-        this.db.then((db: Db) => {
-            db.collection(this.getCollection()).save(value, (err, response) => {
-                console.log(response);
-            });
+    public edit(id: string, value: ModelBase): Promise<ModelBase> {
+        return new Promise((resolve, reject) => {
+            if (!ObjectId.isValid(id)) {
+                reject();
+            } else {
+                this.getCollectionInstance().then((collection: Collection) => {
+                    collection.updateOne({_id: new ObjectId(id)}, value, (err, item: ModelBase) => {
+                        resolve(item);
+                        this.closeConnection();
+                    });
+                });
+            }
         });
     }
 }
